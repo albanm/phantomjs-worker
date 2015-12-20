@@ -4,7 +4,7 @@ var request = require('request');
 
 function documentAPI(inputType, outputType, data, callback) {
   var options = {
-    url: 'http://localhost:3131/document',
+    url: 'http://localhost:3121/document',
     headers: {
       'Content-Type': inputType,
       Accept: outputType

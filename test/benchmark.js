@@ -2,7 +2,7 @@ var fs = require('fs');
 var apiBenchmark = require('api-benchmark');
 
 var services = {
-  server1: 'http://localhost:3131'
+  server1: 'http://localhost:3121'
 };
 
 var routes = {

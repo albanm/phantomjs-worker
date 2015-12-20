@@ -14,8 +14,8 @@ app.post('/document', route.convertDocument);
 route.init(function(err) {
   if (err) return console.error(err);
 
-  app.listen(3131, function(err) {
+  app.listen(3121, function(err) {
     if (err) console.error('Failed to run service', err.stack);
-    else console.info('Service listening at http://localhost:%s', 3131);
+    else console.info('Service listening at http://localhost:%s', 3121);
   });
 });

@@ -10,6 +10,6 @@ RUN npm install --production
 RUN npm cache clean
 COPY . /usr/src/app/
 
-EXPOSE 3131
+EXPOSE 3121
 
 CMD node server.js

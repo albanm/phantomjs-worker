@@ -4,10 +4,10 @@ build:
 	docker build -t phantomjs-worker-dev .
 
 start: build
-	docker run -p 3131:3131 -it --rm --name phantomjs-worker-dev phantomjs-worker-dev
+	docker run -p 3121:3121 -it --rm --name phantomjs-worker-dev phantomjs-worker-dev
 
 start-detached: build
-	docker run -p 3131:3131 -d --name phantomjs-worker-detached phantomjs-worker-dev && sleep 2
+	docker run -p 3121:3121 -d --name phantomjs-worker-detached phantomjs-worker-dev && sleep 2
 
 stop-detached:
 	docker stop phantomjs-worker-detached && docker rm phantomjs-worker-detached
