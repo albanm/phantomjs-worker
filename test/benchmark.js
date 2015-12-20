@@ -2,7 +2,7 @@ var fs = require('fs');
 var apiBenchmark = require('api-benchmark');
 
 var services = {
-  server1: 'http://localhost:3121'
+  server1: 'http://localhost:3131'
 };
 
 var routes = {
@@ -11,10 +11,10 @@ var routes = {
     route: 'document',
     expectedStatusCode: 200,
     headers: {
-      'Content-Type': 'text/plain',
-      Accept: 'text/html'
+      'Content-Type': 'text/html',
+      Accept: 'application/pdf'
     },
-    data: 'Hello world'
+    data: fs.readFileSync(__dirname + '/resources/hello_world.html', 'utf8')
   }
 };
 
