@@ -1,0 +1,27 @@
+env:
+  global:
+    # DOCKERHUB_TRIGGER_TOKEN to trigger a build on dockerhub
+    # TODO
+
+branches:
+  only:
+    - master
+
+language: node_js
+node_js:
+  - '4'
+
+sudo: required
+services:
+  - docker
+
+install:
+  - npm install
+  - make build
+
+script:
+  - make lint
+  - make test
+
+after_success:
+  - curl -XPOST https://registry.hub.docker.com/u/fluxs/phantomjs-worker/trigger/"$DOCKERHUB_TRIGGER_TOKEN"/
