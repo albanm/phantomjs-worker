@@ -1,6 +1,7 @@
 var fs = require('fs');
 var should = require('should');
 var request = require('request');
+var pdfText = require('pdf-text');
 
 function documentAPI(inputType, outputType, data, callback) {
   var options = {
@@ -8,38 +9,22 @@ function documentAPI(inputType, outputType, data, callback) {
     headers: {
       'Content-Type': inputType,
       Accept: outputType
-    }
+    },
+    body: data,
+    encoding: null
   };
 
-  var isBuffer = data instanceof Buffer;
-  if (typeof data === 'object' && !isBuffer) data = JSON.stringify(data);
+  request.post(options, function(err, response) {
+    if (err) return callback(err);
+    if (response.statusCode !== 200) {
+      err = new Error(response.body);
+      err.code = response.statusCode;
+      return callback(err);
+    }
 
-  if (data) {
-    options.body = data;
-  }
-
-  if (isBuffer || !data) {
-    options.encoding = null;
-  }
-
-  if (callback) {
-    request.post(options, function(err, response) {
-      if (err) return callback(err);
-      if (response.statusCode !== 200) {
-        err = new Error(response.body);
-        err.code = response.statusCode;
-        return callback(err);
-      }
-
-      var result = response.body;
-      if (isBuffer) {
-        result = result.toString();
-      }
-      callback(null, result);
-    });
-  } else {
-    return request.post(options);
-  }
+    var result = response.body;
+    callback(null, result);
+  });
 }
 
 describe('Phantomjs converter worker', function() {
@@ -50,10 +35,13 @@ describe('Phantomjs converter worker', function() {
 
   it('should get a PDF from a HTML file', function(callback) {
     documentAPI('text/html', 'application/pdf', fs.readFileSync(__dirname + '/resources/hello_world.html'),
-      function(err) {
+      function(err, result) {
         should.not.exist(err);
-        // TODO: a way to check the content
-        callback();
+        pdfText(result, function(err, textChunks) {
+          should.not.exist(err);
+          textChunks[0].should.equal('H');
+          callback();
+        });
       });
   });
 });

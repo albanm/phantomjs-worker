@@ -23,7 +23,6 @@ exports.convertDocument = function(req, res, next) {
 
   phantomBridge.createPage(function(page) {
     console.log('Phantom bridge page created');
-
     page.setContent(req.body, 'http://www.phantomjs.org/', function() {
       console.log('Phantom bridge content added');
 
