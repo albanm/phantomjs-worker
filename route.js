@@ -28,9 +28,15 @@ exports.convertDocument = function(req, res, next) {
 
       // TODO: listen to requests to allow for more complex page creations
 
+      // Default is the resolution of a A4 paper at 300 dpi
+      page.set('viewportSize', {
+        width: req.query.width || 2480,
+        height: req.query.height || 3508
+      });
+
       page.render(tempPath, {
         format: outputExtension,
-        quality: '100'
+        quality: req.query.quality || 100
       }, function() {
         console.log('Phantom bridge render finished');
         var readStream = fs.createReadStream(tempPath);
