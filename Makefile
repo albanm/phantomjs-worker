@@ -19,4 +19,4 @@ benchmark: start-detached
 	rm -rf benchmark-results ; mkdir benchmark-results ; node test/benchmark.js ; make stop-detached
 
 lint:
-	jscs -v . ; jshint .
+	jshint .

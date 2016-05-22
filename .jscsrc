@@ -1,9 +1,0 @@
-{
-  "preset": "node-style-guide",
-  "excludeFiles": ["node_modules/**", "coverage/**"],
-  "requireTrailingComma": null,
-  "requireCurlyBraces": null,
-  "maximumLineLength": 120,
-  "requireSpaceAfterLineComment": null,
-  "requireCapitalizedComments": null
-}
