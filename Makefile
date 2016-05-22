@@ -10,7 +10,7 @@ start-detached: build
 	docker run -p 3121:3121 -d --name phantomjs-worker-detached phantomjs-worker-dev && sleep 2
 
 stop-detached:
-	docker stop phantomjs-worker-detached && docker rm phantomjs-worker-detached
+	docker logs phantomjs-worker-detached && docker stop phantomjs-worker-detached && docker rm phantomjs-worker-detached
 
 test: start-detached
 	mocha test/integration.js ; make stop-detached

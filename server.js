@@ -8,7 +8,7 @@ console.log('Initialize phantomjs-worker service');
 var app = express();
 app.use(cors());
 app.use(bodyParser.text({
-  type: 'text/html'
+  type: 'text/*'
 }));
 app.get('/document', route.convertDocument);
 app.post('/document', route.convertDocument);

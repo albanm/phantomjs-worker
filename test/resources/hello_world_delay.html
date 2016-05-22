@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 id="title">Hello {{who}} !</h1>
+
+    <script>
+      setTimeout(function() {
+        var title = document.getElementById('title');
+        title.innerHTML = title.innerHTML.replace('{{who}}', 'World');
+      }, 100);
+    </script>
+  </body>
+</html>
