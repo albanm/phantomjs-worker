@@ -5,3 +5,7 @@
 *A docker image containing a very simple REST service for document conversion and rendering using phantomjs.*
 
 This is mostly intended as a worker for [flux-templating](https://github.com/flux-s/flux-templating) but can be used independently.
+
+Build locally:
+
+    docker build -t fluxs/phantomjs-worker .
